@@ -16,10 +16,30 @@ Each online platform has folders with programming solutions in each programming 
     ...
 ```
 
-### Rust
+<details>
+<summary>### Rust</summary>
 Add the rust-folder to the online platform folder by writing
-`cargo new rust vcs=none`
+```sh
+cargo new rust vcs=none
+```
 
 The solution can be tested by writing 
-`cargo test`
+```sh
+cargo test
+```
+</details>
 
+
+<details>
+<summary>### Haskell</summary>
+Run 
+```sh
+brew install ghc
+```
+
+The solution can then be tested by writing
+```sh
+runhaskell your_solution.hs
+```
+
+</details>
