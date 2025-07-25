@@ -19,6 +19,7 @@ Each online platform has folders with programming solutions in each programming 
 <details>
 <summary>Rust</summary>
 Add the rust-folder to the online platform folder by writing
+
 ```sh
 cargo new rust vcs=none
 ```
@@ -33,6 +34,7 @@ cargo test
 <details>
 <summary>Haskell</summary>
 Run 
+
 ```sh
 brew install ghc
 ```
