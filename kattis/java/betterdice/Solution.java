@@ -33,7 +33,7 @@ public class Solution {
           for (int j = 0; j < n; j++) {
               if (list1.get(i) > list2.get(j)) {
                 list1_wins += 1;
-              } else if (list1.get(i) < list2.get(j)) {
+              } else if (list2.get(i) < list2.get(j)) {
                 list2_wins += 1;
               }
           } 
