@@ -25,7 +25,6 @@ class Solution(object):
         distances[k-1] = 0
         priority_queue = []
         heapq.heappush(priority_queue, (0, k))
-        print(graph_complex)
         while priority_queue:
             current_node = heapq.heappop(priority_queue)
             if current_node[1] in graph_complex:
