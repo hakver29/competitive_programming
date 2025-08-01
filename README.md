@@ -45,3 +45,29 @@ runhaskell your_solution.hs
 ```
 
 </details>
+
+<details>
+<summary>Go</summary>
+Run 
+
+```sh
+brew install go
+```
+
+The solution can then be tested by writing
+```sh
+go run your_solution.go
+```
+
+</details>
+
+<details>
+<summary>Java</summary>
+Run 
+
+```sh
+java your_solution.java
+```
+
+</details>
+
