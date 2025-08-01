@@ -2,11 +2,15 @@ public class Solution {
     public int reverse(int x) {
         int reversed = 0;
         while (x != 0){
-            int digit = x % 10;
-            reversed = reversed * 10 + digit;
-            x /= 10;
+            try {
+                int digit = x % 10;
+                reversed = Math.multiplyExact(reversed, 10);
+                reversed = Math.addExact(reversed, digit);
+                x /= 10;
+            } catch (ArithmeticException e){
+                return 0;
+            }
         }
-
         return reversed;
     }
 
@@ -34,5 +38,14 @@ public class Solution {
         int input3 = 120;
         int expected3 = 21;
         runTest(solution.reverse(input3), expected3, "Test Case 3");
+
+        int input4 = 1534236469;
+        int expected4 = 0;
+        runTest(solution.reverse(input4), expected4, "Test Case 4");
+
+        int input5 = -2147483412;
+        int expected5 = -2143847412;
+        runTest(solution.reverse(input5), expected5, "Test Case 5");
+
     }
 };
