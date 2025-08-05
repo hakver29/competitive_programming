@@ -1,22 +1,25 @@
 import unittest
 from typing import Optional
 
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        if root == None:
+        if root is None:
             return False
-        elif root.val == targetSum and root.left == None and root.right == None:
+        elif root.val == targetSum and root.left is None and root.right is None:
             return True
         else:
             hasPathSumLeft = self.hasPathSum(root.left, targetSum - root.val)
             hasPathSumRight = self.hasPathSum(root.right, targetSum - root.val)
             return hasPathSumLeft or hasPathSumRight
+
 
 class TestSolution(unittest.TestCase):
     def test_tree1(self):
@@ -26,13 +29,13 @@ class TestSolution(unittest.TestCase):
         root.left = TreeNode(2)
         root.right = TreeNode(3)
 
-        self.assertEqual(Solution().hasPathSum(root,targetSum), False)
+        self.assertEqual(Solution().hasPathSum(root, targetSum), False)
 
     def test_tree2(self):
         targetSum = 0
         root = TreeNode()
 
-        self.assertEqual(Solution().hasPathSum(root,targetSum), False)
+        self.assertEqual(Solution().hasPathSum(root, targetSum), False)
 
     def test_tree3(self):
         targetSum = 22
@@ -47,9 +50,8 @@ class TestSolution(unittest.TestCase):
         root.right.right = TreeNode(4)
         root.right.right.right = TreeNode(1)
 
-        self.assertEqual(Solution().hasPathSum(root, 22), True)
+        self.assertEqual(Solution().hasPathSum(root, targetSum), True)
 
 
-if __name__ == '__main__':
-    unittest.main(argv=['first-arg-is-ignored'], exit=False)
-
+if __name__ == "__main__":
+    unittest.main(argv=["first-arg-is-ignored"], exit=False)

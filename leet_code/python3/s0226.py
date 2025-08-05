@@ -1,12 +1,14 @@
-from typing import Optional
 import unittest
 from collections import deque
+from typing import Optional
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
 
 class Solution:
     def buildBinaryTreeFromList(self, nodes: list[Optional[int]]) -> Optional[TreeNode]:
@@ -39,7 +41,7 @@ class Solution:
 
         result = []
         queue = deque([root])
-    
+
         while queue:
             node = queue.popleft()
             result.append(node.val if node else None)
@@ -47,10 +49,10 @@ class Solution:
             if node:
                 queue.append(node.left)
                 queue.append(node.right)
-    
+
         while result and result[-1] is None:
             result.pop()
-            
+
         return result
 
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
@@ -65,24 +67,28 @@ class Solution:
 
         return root
 
-    def invertBinaryTreeFromInput(self, root: list[Optional[int]]) -> list[Optional[int]]:
+    def invertBinaryTreeFromInput(
+        self, root: list[Optional[int]]
+    ) -> list[Optional[int]]:
         binaryTree = self.buildBinaryTreeFromList(root)
         invertedBinaryTree = self.invertTree(binaryTree)
         invertedBinaryTreeList = self.buildListFromBinaryTree(invertedBinaryTree)
         return invertedBinaryTreeList
-        
+
 
 class TestMySqrt(unittest.TestCase):
     def test_complex_case(self):
-        self.assertEqual(Solution().invertBinaryTreeFromInput([4,2,7,1,3,6,9]), [4,7,2,9,6,3,1])
-    
+        self.assertEqual(
+            Solution().invertBinaryTreeFromInput([4, 2, 7, 1, 3, 6, 9]),
+            [4, 7, 2, 9, 6, 3, 1],
+        )
+
     def test_simple_case(self):
-        self.assertEqual(Solution().invertBinaryTreeFromInput([2,1,3]), [2,3,1])
+        self.assertEqual(Solution().invertBinaryTreeFromInput([2, 1, 3]), [2, 3, 1])
 
     def test_empty_tree(self):
         self.assertEqual(Solution().invertBinaryTreeFromInput([]), [])
 
 
-if __name__ == '__main__':
-    unittest.main(argv=['first-arg-is-ignored'], exit=False)
-
+if __name__ == "__main__":
+    unittest.main(argv=["first-arg-is-ignored"], exit=False)
