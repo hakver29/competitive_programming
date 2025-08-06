@@ -3,30 +3,33 @@ from typing import List
 
 
 class Solution:
-    def shipWithinDays(self, weights: List[int], days: int) -> int:
-        solutionFound = False
-        lowerBound = int(sum(weights) / days)
-        shipMaxWeight = lowerBound
-
-        while solutionFound is False:
-            currentDay = 1
-            currentShipWeight = 0
-            for i in weights:
-                if i > shipMaxWeight:
-                    currentDay = days + 1
-                    break
-                elif i + currentShipWeight > shipMaxWeight:
-                    currentDay += 1
-                    currentShipWeight = i
-                else:
-                    currentShipWeight += i
-
-            if currentDay <= days:
-                solutionFound = True
+    def checkCapacity(self, weights: List[int], days: int, capacity: int):
+        day = 1
+        currentWeight = 0
+        for i in weights:
+            if i + currentWeight > capacity:
+                day += 1
+                currentWeight = i
             else:
-                shipMaxWeight += 1
+                currentWeight += i
 
-        return shipMaxWeight
+        if day <= days:
+            return True
+        return False
+
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        lowerBound = max(weights)
+        upperBound = sum(weights)
+
+        while lowerBound < upperBound:
+            mid = lowerBound + ((upperBound - lowerBound) // 2)
+            canHaveCapacity = self.checkCapacity(weights, days, mid)
+            if canHaveCapacity is True:
+                upperBound = mid
+            else:
+                lowerBound = mid + 1
+
+        return lowerBound
 
 
 class TestMySqrt(unittest.TestCase):
