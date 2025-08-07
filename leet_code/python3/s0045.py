@@ -4,16 +4,21 @@ from typing import List
 
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        jumps = [0 for i in nums]
-        for i in range(len(nums)):
-            for j in range(1, nums[i] + 1):
-                if i + j >= len(nums):
+        n = len(nums)
+        jumps = 0
+        current_end = 0
+        farthest = 0
+
+        for i in range(n - 1):
+            farthest = max(farthest, i + nums[i])
+
+            if i == current_end:
+                jumps += 1
+                current_end = farthest
+
+                if current_end >= n - 1:
                     break
-                elif jumps[i + j] == 0:
-                    jumps[i + j] = max(jumps[i] + 1, jumps[+j])
-                else:
-                    jumps[i + j] = min(jumps[i] + 1, jumps[i + j])
-        return jumps[-1]
+        return jumps
 
 
 class TestMySqrt(unittest.TestCase):
