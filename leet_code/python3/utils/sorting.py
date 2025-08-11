@@ -46,10 +46,42 @@ class Sorting:
 
         return sorted_arr
 
+    def heapify(self, arr, n, i):
+        largest = i
+        left_child = 2 * i + 1
+        right_child = 2 * i + 2
+
+        if left_child < n and arr[i] < arr[left_child]:
+            largest = left_child
+
+        if right_child < n and arr[largest] < arr[right_child]:
+            largest = right_child
+
+        if largest != i:
+            arr[i], arr[largest] = arr[largest], arr[i]
+
+            self.heapify(arr, n, largest)
+
+    def heapsort(self, arr):
+        n = len(arr)
+
+        for i in range(n // 2 - 1, -1, -1):
+            self.heapify(arr, n, i)
+
+        for i in range(n - 1, 0, -1):
+            arr[i], arr[0] = arr[0], arr[i]
+
+            self.heapify(arr, i, 0)
+
+        return arr
+
 
 class TestCases(unittest.TestCase):
     test_case_1_input = [2, 23, 1, 23, 54, 23, 5433, 3, 44, 1, 2, 3]
     test_case_1_output = [1, 1, 2, 2, 3, 3, 23, 23, 23, 44, 54, 5433]
+
+    test_case_2_input = [12, 11, 13, 5, 6, 7]
+    test_case_2_output = [5, 6, 7, 11, 12, 13]
 
     def test_quicksort_example1(self):
         self.assertEqual(
@@ -61,6 +93,11 @@ class TestCases(unittest.TestCase):
         self.assertEqual(
             Sorting().mergesort(self.test_case_1_input),
             self.test_case_1_output,
+        )
+
+    def test_heapsort_example_1(self):
+        self.assertEqual(
+            Sorting().heapsort(self.test_case_2_input), self.test_case_2_output
         )
 
 
