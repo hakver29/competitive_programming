@@ -75,6 +75,56 @@ class Sorting:
 
         return arr
 
+    def countingsort(self, arr):
+        if not arr:
+            return []
+
+        max_val = max(arr)
+
+        count = [0] * (max_val + 1)
+
+        for num in arr:
+            count[num] += 1
+
+        for i in range(1, len(count)):
+            count[i] += count[i - 1]
+
+        output = [0] * len(arr)
+
+        for num in reversed(arr):
+            position = count[num] - 1
+            output[position] = num
+            count[num] -= 1
+
+        return output
+
+    def insertionsort(self, arr):
+        for i in range(1, len(arr)):
+            key = arr[i]
+
+            j = i - 1
+            while j >= 0 and key < arr[j]:
+                arr[j + 1] = arr[j]
+                j -= 1
+
+            arr[j + 1] = key
+        return arr
+
+    def selectionsort(self, arr):
+        print(arr)
+        for i in range(len(arr)):
+            min_idx = 1
+
+            for j in range(i + 1, len(arr)):
+                if arr[j] < arr[min_idx]:
+                    min_idx = j
+
+            arr[i], arr[min_idx] = arr[min_idx], arr[i]
+
+            print(arr)
+
+        return arr
+
 
 class TestCases(unittest.TestCase):
     test_case_1_input = [2, 23, 1, 23, 54, 23, 5433, 3, 44, 1, 2, 3]
@@ -98,6 +148,21 @@ class TestCases(unittest.TestCase):
     def test_heapsort_example_1(self):
         self.assertEqual(
             Sorting().heapsort(self.test_case_2_input), self.test_case_2_output
+        )
+
+    def test_countingsort_example_1(self):
+        self.assertEqual(
+            Sorting().countingsort(self.test_case_2_input), self.test_case_2_output
+        )
+
+    def test_insertionsort_example_1(self):
+        self.assertEqual(
+            Sorting().insertionsort(self.test_case_2_input), self.test_case_2_output
+        )
+
+    def test_selectionsort_example_1(self):
+        self.assertEqual(
+            Sorting().selectionsort(self.test_case_2_input), self.test_case_2_output
         )
 
 

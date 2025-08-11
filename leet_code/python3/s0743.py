@@ -66,6 +66,5 @@ class TestMySqrt(unittest.TestCase):
         self.assertEqual(Solution().networkDelayTime([[1, 2, 1]], 2, 2), -1)
 
 
-# This block allows you to run the tests directly from the script
 if __name__ == "__main__":
     unittest.main(argv=["first-arg-is-ignored"], exit=False)

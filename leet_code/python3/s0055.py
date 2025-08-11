@@ -22,6 +22,5 @@ class TestMySqrt(unittest.TestCase):
         self.assertEqual(Solution().canJump([3, 2, 1, 0, 4]), False)
 
 
-# This block allows you to run the tests directly from the script
 if __name__ == "__main__":
     unittest.main(argv=["first-arg-is-ignored"], exit=False)

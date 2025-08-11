@@ -45,6 +45,5 @@ class TestMySqrt(unittest.TestCase):
         self.assertEqual(Solution().shipWithinDays([1, 2, 3, 1, 1], 4), 3)
 
 
-# This block allows you to run the tests directly from the script
 if __name__ == "__main__":
     unittest.main(argv=["first-arg-is-ignored"], exit=False)
