@@ -86,15 +86,10 @@ class Sorting:
         for num in arr:
             count[num] += 1
 
-        for i in range(1, len(count)):
-            count[i] += count[i - 1]
+        output = []
 
-        output = [0] * len(arr)
-
-        for num in reversed(arr):
-            position = count[num] - 1
-            output[position] = num
-            count[num] -= 1
+        for i, freq in enumerate(count):
+            output.extend([i] * freq)
 
         return output
 
@@ -108,21 +103,6 @@ class Sorting:
                 j -= 1
 
             arr[j + 1] = key
-        return arr
-
-    def selectionsort(self, arr):
-        print(arr)
-        for i in range(len(arr)):
-            min_idx = 1
-
-            for j in range(i + 1, len(arr)):
-                if arr[j] < arr[min_idx]:
-                    min_idx = j
-
-            arr[i], arr[min_idx] = arr[min_idx], arr[i]
-
-            print(arr)
-
         return arr
 
 
@@ -158,11 +138,6 @@ class TestCases(unittest.TestCase):
     def test_insertionsort_example_1(self):
         self.assertEqual(
             Sorting().insertionsort(self.test_case_2_input), self.test_case_2_output
-        )
-
-    def test_selectionsort_example_1(self):
-        self.assertEqual(
-            Sorting().selectionsort(self.test_case_2_input), self.test_case_2_output
         )
 
 
