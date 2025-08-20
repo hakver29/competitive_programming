@@ -47,7 +47,7 @@ def knightlOnAChessboard(n):
                 continue
 
             min_moves = solve_bfs(n, a, b)
-            results[a - 1][b - 1] = min_moves
+            results[b - 1][a - 1] = min_moves
 
     return results
 
